@@ -1,0 +1,123 @@
+1-
+"A Clockwork Orange" - represents a String data type
+42 - represents an Integer or Number data type
+09/02/1945 - represents a Date data type
+98.7 - represents a Float or Number data type
+$15.99 - represents a Float or Money data type
+
+2-
+A database should be used when there is a reasonably large amount of data that is needed to be managed by multiple accessors. A text file should be used then there is a need for locality or a single accessor.
+
+3-
+SQL and most other programming languages are different in the fact that SQL is a declarative programming language. A fun analogy I found, if you like Star Trek :P, in declarative programming, "Tea, Earl Grey, Hot". :)
+
+4-
+In a basic definition, a database system holds groups of data types together in tables or grids.
+
+5-
+Uhhh.. A Table consists of rows and columns, in which therefore contain cells. Cells exist because they are the cross points of rows and columns. Cells contain values; these values are relevant the column and row its cell is in.
+
+6-
+Three data types that can be used in a table could be, as mentioned earlier: Floats, Objects, even just Unicode Characters.
+
+7-
+This clause is asking for all dates and amounts from payments, thus returning a table or grid of relevant results.
+(date, amount)
+'2016-05-01', 1500
+'2016-05-10', 37.00
+'2016-05-15', 124.93
+'2016-05-23', 54.72
+
+The second clause is asking for any amount from payments that is greater than 500.
+(amount)
+1500
+
+The third clause is asking for any field from payments where the payee is 'Mega Foods'.
+(date, payee, amount, memo)
+'2016-05-15', 'Mega Foods', 124.93, 'Groceries'
+
+8-
+SELECT email, signup
+FROM users
+WHERE name = 'DeAndre Data';
+
+
+email	signup
+datad@comcast.net	2008-01-20T00:00:00.000Z
+
+8a-
+SELECT userid
+FROM users
+WHERE email = 'aleesia.algorithm@uw.edu';
+
+userid
+1
+
+8b-
+SELECT *
+FROM users
+WHERE userid = 4;
+
+
+userid	name	email	signup
+4	Brandy Boolean	bboolean@nasa.gov	1999-10-15T00:00:00.000Z
+
+Here is the markdown for the past three queries:
+
+**Schema (PostgreSQL v9.6)**
+
+    CREATE TABLE users(
+      "userid" INTEGER,
+      "name"   VARCHAR(32),
+      "email"  VARCHAR(64),
+      "signup" DATE
+    );
+        
+    INSERT INTO users
+        ("userid", "name",              "email",                        "signup")
+    VALUES
+        ( 1,       'Aleesia Algorithm', 'aleesia.algorithm@uw.edu',     '2014-10-24'),
+        ( 2,       'DeAndre Data',      'datad@comcast.net',            '2008-01-20'),
+        ( 3,       'Chris Collection',  'chris.collection@outlook.com', '2012-01-20'),
+        ( 4,       'Brandy Boolean',    'bboolean@nasa.gov',            '1999-10-15');
+    
+
+---
+
+**Query #1**
+
+    SELECT email, signup
+    FROM users
+    WHERE name = 'DeAndre Data';
+
+| email             | signup                   |
+| ----------------- | ------------------------ |
+| datad@comcast.net | 2008-01-20T00:00:00.000Z |
+
+---
+**Query #2**
+
+    SELECT userid
+    FROM users
+    WHERE email = 'aleesia.algorithm@uw.edu';
+
+| userid |
+| ------ |
+| 1      |
+
+---
+**Query #3**
+
+    SELECT *
+    FROM users
+    WHERE userid = 4;
+
+| userid | name           | email             | signup                   |
+| ------ | -------------- | ----------------- | ------------------------ |
+| 4      | Brandy Boolean | bboolean@nasa.gov | 1999-10-15T00:00:00.000Z |
+
+---
+
+[View on DB Fiddle](https://www.db-fiddle.com/f/iQAEYktwysXqcLQHv2dwbc/0)
+
+
