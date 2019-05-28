@@ -1,0 +1,134 @@
+Commands for adding is 'ADD', updating is 'UPDATE' and, deleting is 'DELETE'
+
+ADDING is basically adding an entirely new value;
+
+Updating is basically taking a value and updating it.
+
+Deleting is as it sounds, it deletes data.
+
+Alter is also as it sounds, but can be used to ADD columns and such.
+
+DROP is used for basically deleting an entire table, like DELETE but more severe.
+
+Real world data types that could be used in data tables would be dates, the time, and even the average speed of a car.
+
+CREATE TABLE weddingDinner(
+  "name" VARCHAR(32),
+  "rsvp" BOOL,
+  "guests" INTEGER,
+  "meals" NUMERIC(2,1)
+);
+
+INSERT INTO weddingDinner
+("name","rsvp","guests","meals")
+VALUES
+('Tyler Poore','true','2','2.5');
+
+ALTER TABLE weddingDinner ADD COLUMN sentThankYou bool;
+
+ALTER TABLE weddingDinner DROP COLUMN meals;
+
+ALTER TABLE weddingDinner ADD COLUMN tableNumber integer;
+
+DROP TABLE weddingDinner;
+
+Here is the code for the SQL assignments:
+
+CREATE TABLE weddingDinner(
+  "name" VARCHAR(32),
+  "rsvp" BOOL,
+  "guests" INTEGER,
+  "meals" NUMERIC(2,1)
+);
+
+INSERT INTO weddingDinner
+("name","rsvp","guests","meals")
+VALUES
+('Tyler Poore','true','2','2.5');
+
+ALTER TABLE weddingDinner ADD COLUMN sentThankYou bool;
+
+ALTER TABLE weddingDinner DROP COLUMN meals;
+
+ALTER TABLE weddingDinner ADD COLUMN tableNumber integer;
+
+DROP TABLE weddingDinner;
+
+CREATE TABLE books(
+  "isbn" text,
+  "title" text,
+  "author" text,
+  "genre" text,
+  "publishingDate" date,
+  "copies" integer,
+  "availablecopies" integer
+);
+
+INSERT INTO books
+("isbn", "title","author","genre","publishingDate","copies","availablecopies")
+VALUES
+('0-453-00269-2','2001: A Space Odyssey','Arthur C. Clarke','Science Fiction','January 1, 1968','1','1'),
+('0-553-10354-7','A Game of Thrones','George R. R. Martin','Epic Fantasy','August 1, 1996','1','1'),
+('0-345-53978-8','Red Rising','Pierce Brown','Science Fiction','January 28, 2014','1','1');
+
+DELETE FROM books
+WHERE isbn = '0-553-10354-7';
+
+UPDATE books 
+SET availablecopies = availablecopies - 1 
+WHERE title = 'Red Rising';
+
+CREATE TABLE spacecrafts(
+  "id" text,
+  "name" text,
+  "yearlaunched" date,
+  "origin" text,
+  "description" text,
+  "orbitingbody" text,
+  "isoperating" bool,
+  "milesfromearth" numeric(5,2)
+);
+
+INSERT INTO spacecrafts
+("id","name","yearlaunched","origin","description","orbitingbody","isoperating","milesfromearth")
+VALUES
+('2001-014A','2001 Mars Oddysey','7 April 2001, 15:02:22 UTC','Cape Canaveral SLC-17A','one of six currently active human-made Mars satellites. It is continuing its extended mission to map the surface of Mars and also acts as a relay for the Curiosity rover.[3] Its name is a tribute to the novel and film 2001: A Space Odyssey.','Mars','true','1.52'),
+('2007-004','THEMIS','17 February 2007, 23:01:00 UTC','Cape Canaveral SLC-17B','studying the effect of the solar wind on the Moon. Originally launched as Earth satellites, they were later repurposed and moved to lunar orbit.','Moon','true','0.0'),
+('2003-022A','2003 Mars Express','2 June 2003, 17:45 UTC','Baikonur 31/6','Mars orbiter designed to study the planets atmosphere and geology, search for sub-surface water, and deploy the Beagle 2 lander.[4] In 2017 the mission was extended until at least the end of 2020','Mars','true','1.52');
+
+DELETE FROM spacecrafts
+WHERE id = '2007-004';
+
+UPDATE spacecrafts
+SET isoperating = false
+WHERE id = '2001-014A';
+
+CREATE TABLE inbox(
+  "id", integer,
+  "subject" text,
+  "sender" text,
+  "cc" text,
+  "body" text,
+  "timesent" date,
+  "isread" bool
+);
+
+INSERT INTO inbox
+("id","subject","sender","cc","body","timesent","isread")
+VALUES
+('0','Hello','Myself','Taylor','Testing again','2 June 2003, 17:45 UTC','true'),
+('1','Goodbye','Taylor','null','Inside here','2 June 2003, 17:45 UTC','false'),
+('2','Konnichiwa','Takata','null','Konjiki no Yami suki desu.','2 June 2003, 17:45 UTC','false');
+
+DELETE FROM inbox
+WHERE id = 0;
+
+UPDATE inbox
+SET isread = false
+WHERE id = 1;
+
+
+
+
+
+
