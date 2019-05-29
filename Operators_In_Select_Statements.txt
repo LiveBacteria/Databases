@@ -22,7 +22,7 @@ WHERE breed NOT LIKE '%shepherd%';
 SElECT id, age, weight, breed
 FROM dogs
 WHERE weight > 60
-AND breed = 'Great Dane';
+OR breed = 'Great Dane';
 
     SELECT name, adoption_date FROM cats;
 
