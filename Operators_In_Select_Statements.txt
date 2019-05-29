@@ -1,0 +1,75 @@
+SELECT *
+FROM table;
+
+SCFTO (scuff-toe) select column from table options
+
+SELECT name, gender, age
+FROM dogs
+WHERE breed LIKE '%labrador%';
+
+SELECT id
+FROM dogs
+WHERE age < 1;
+
+SELECT name, age
+FROM dogs
+WHERE gender = 'female' AND weight > 35;
+
+SELECT *
+FROM dogs
+WHERE breed NOT LIKE '%shepherd%';
+
+SElECT id, age, weight, breed
+FROM dogs
+WHERE weight > 60
+AND breed = 'Great Dane';
+
+    SELECT name, adoption_date FROM cats;
+
+| name     | adoption_date            |
+| -------- | ------------------------ |
+| Mushi    | 2016-03-22T00:00:00.000Z |
+| Seashell |                          |
+| Azul     | 2016-04-17T00:00:00.000Z |
+| Victoire | 2016-09-01T00:00:00.000Z |
+| Nala     |                          |
+
+    SELECT name, age FROM cats;
+
+| name     | age |
+| -------- | --- |
+| Mushi    | 1   |
+| Seashell | 7   |
+| Azul     | 3   |
+| Victoire | 7   |
+| Nala     | 1   |
+\----------------/
+
+SELECT * 
+FROM cats;
+
+SELECT name, sex
+FROM cats
+WHERE age = 7;
+
+SELECT name
+FROM cats;
+
+Real world examples for less than would be when you need to make sure you have enough space on a hard drive for something to install.
+
+Real world examples for greater than would be when you are shopping and want to make sure you have more than enough food for the coming weeks.
+
+Real world examples for equal to would be when you need to get exactly an amount per say for an ingredients list.
+
+Real world examples for not equal to would be when you looking for clothing but not in a certain color.
+
+And then there are mixes of the listed comparison operators, I won't list them due to there being so many different options.
+
+If I were to copy the code exactly as the question asked it, it would return nothing due to the quotes being funky. Otherwise, it could return 'Seasell' and "Naila".
+
+The next selection statement would return Mushi, Seashell, Victoire, and Nala.
+
+If I were to copy the code exactly as the question asked it, it would return nothing due to ID being the wrong case and the quotes being funky around Mushi and M.
+
+
+
