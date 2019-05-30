@@ -1,0 +1,132 @@
+You find related data held in two seperate data tables by using the SQL 'JOIN' command.
+
+I would like to point out that this site was very helpful, http://www.sql-join.com/sql-join-types, in terms of learning to understand the different between the `JOIN` commands.
+
+`INNER JOIN` is used when you need two tables to be combined with only matching rows.
+A real world example of `INNER JOIN` could be looking for emails that you sent.
+
+`LEFT OUTER JOIN` is used when you need two tables to be combined and only have all the rows of the left and the matching rows on the right.
+A real world example of `LEFT OUTER JOIN` could be listing the inventory of a car parts store where the entire inventory is listed on the left and only those that were searching will appear on the right.
+
+`RIGHT OUTER JOIN` is used when you need two tables to be combined and only have all the rows of the right shown on the left and the matching rows of the left on the right.
+A real world example of `RIGHT OUTER JOIN` could be when you have food stored in your house, somehow it's stored in a database (amazon?) :P, and you need to make sure you have the ingredients for a recipe.
+
+A primary key is a unique ID that exists only once per table to identify a row of data.
+A foreign key is a key that is used to match against a primary key in another table or row.
+
+Real world examples of primary keys and foreign keys would be a collection of 'cars' and a collection of 'cartypes' (think SUV, SEDAN, SALOON). Say these tables have keys, foreign and primary keys. 'cars' has foreign keys whereas 'cartypes' has primary keys. You could 'JOIN' these tables together using those keys.
+
+Aliasing is literally a shortened term. Say a table 'peoplejobs', that is a hassle to type everytime you want to reference it. An alias would allow you to type, say, 'pj' instead.
+
+SELECT p.name, c.salary,
+c.vacation_days FROM professor AS P JOIN
+compensation AS c ON p.id =
+c.professor_id;
+
+I would use a 'NATURAL JOIN' to find say something on newegg. I want a new graphics card from MSI. Using a 'NATURAL JOIN', I can provide a list of results that match both of my terms.
+
+SELECT e.name, ss.shift_id
+FROM employees AS e
+JOIN scheduled_shifts as ss
+ON e.id = ss.shift_id;
+
+SELECT v.first_name, d.name
+FROM volunteers AS v
+LEFT OUTER JOIN dogs AS d
+ON v.foster_dog_id = d.id;
+
+| first_name | name      |
+| ---------- | --------- |
+| Rubeus     | Munchkin  |
+| Marjorie   | Marmaduke |
+| Sirius     |           |
+| Remus      |           |
+| Albus      |           |
+
+SELECT c.name, a.first_name, ca.date
+FROM cat_adoptions AS ca
+JOIN cats AS c
+ON ca.cat_id = c.id
+JOIN adopters AS a
+ON ca.adopter_id = a.id
+WHERE ca.date >= (CURRENT_DATE - 31);
+
+| name     | first_name | date                     |
+| -------- | ---------- | ------------------------ |
+| Mushi    | Arabella   | 2019-05-10T00:00:00.000Z |
+| Victoire | Argus      | 2019-05-15T00:00:00.000Z |
+
+SELECT a.first_name
+FROM adopters AS a
+LEFT OUTER JOIN dog_adoptions AS da
+ON a.id = da.adopter_id
+WHERE da.adopter_id IS NULL;
+
+| first_name |
+| ---------- |
+| Hermione   |
+| Arabella   |
+
+SELECT cats.name
+FROM cats
+LEFT JOIN cat_adoptions 
+ON cat_adoptions.cat_id = cats.id
+WHERE cat_adoptions.adopter_id is NULL
+UNION 
+SELECT dogs.name
+FROM dogs
+LEFT JOIN dog_adoptions
+ON dog_adoptions.dog_id = dogs.id
+WHERE dog_adoptions.adopter_id is NULL;
+
+| name      |
+| --------- |
+| Lassie    |
+| Boujee    |
+| Marmaduke |
+| Seashell  |
+| Munchkin  |
+| Nala      |
+| Marley    |
+
+SELECT adopters.first_name
+FROM adopters 
+JOIN dog_adoptions
+ON adopters.id = dog_adoptions.adopter_id
+WHERE dog_adoptions.dog_id = 10007;
+
+| first_name |
+| ---------- |
+| Argus      |
+
+SELECT p.name, h.rank
+FROM patrons AS p
+JOIN holds AS h
+ON p.id = h.patron_id
+WHERE isbn = '9136884926';
+
+| name           | rank |
+| -------------- | ---- |
+| Terry Boot     | 1    |
+| Cedric Diggory | 2    |
+
+
+    SELECT DISTINCT p.name,
+    	(SELECT book.title
+    		FROM (SELECT t.checked_in_date, t.patron_id, b.title
+    			FROM transactions AS t
+    				JOIN books AS b
+    				ON b.isbn = t.isbn
+    			WHERE t.checked_in_date IS NULL) AS book
+    		WHERE book.patron_id = p.id)
+    	FROM transactions AS t
+    JOIN patrons AS p ON t.patron_id = p.id
+    JOIN books AS b ON b.isbn = t.isbn;
+
+| name             | title                                   |
+| ---------------- | --------------------------------------- |
+| Cedric Diggory   | Fantastic Beasts and Where to Find Them |
+| Cho Chang        |                                         |
+| Hermione Granger |                                         |
+| Padma Patil      |                                         |
+| Terry Boot       | Advanced Potion-Making                  |
