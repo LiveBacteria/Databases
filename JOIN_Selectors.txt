@@ -1,6 +1,6 @@
 You find related data held in two seperate data tables by using the SQL 'JOIN' command.
 
-I would like to point out that this site was very helpful, http://www.sql-join.com/sql-join-types, in terms of learning to understand the different between the `JOIN` commands.
+I would like to point out that this site was very helpful, http://www.sql-join.com/sql-join-types, in terms of learning to understand the difference between the `JOIN` commands.
 
 `INNER JOIN` is used when you need two tables to be combined with only matching rows.
 A real world example of `INNER JOIN` could be looking for emails that you sent.
@@ -23,12 +23,14 @@ c.vacation_days FROM professor AS P JOIN
 compensation AS c ON p.id =
 c.professor_id;
 
-I would use a 'NATURAL JOIN' to find say something on newegg. I want a new graphics card from MSI. Using a 'NATURAL JOIN', I can provide a list of results that match both of my terms.
+I would use a NATURAL JOIN to combine two lists where they both share column names.You could have a list of computer parts and their types. If you were to use a natural join on the two it would list only once the part with its type. ( :) Fixed? )
 
-SELECT e.name, ss.shift_id
+SELECT e.name, s.date, s.start_time, s.end_time
 FROM employees AS e
-JOIN scheduled_shifts as ss
-ON e.id = ss.shift_id;
+JOIN scheduled_shifts AS ss
+ON e.id = ss.employee_id
+JOIN shifts AS s
+ON s.id = ss.shift_id
 
 SELECT v.first_name, d.name
 FROM volunteers AS v
@@ -110,7 +112,6 @@ WHERE isbn = '9136884926';
 | Terry Boot     | 1    |
 | Cedric Diggory | 2    |
 
-
     SELECT DISTINCT p.name,
     	(SELECT book.title
     		FROM (SELECT t.checked_in_date, t.patron_id, b.title
@@ -125,8 +126,9 @@ WHERE isbn = '9136884926';
 
 | name             | title                                   |
 | ---------------- | --------------------------------------- |
-| Cedric Diggory   | Fantastic Beasts and Where to Find Them |
-| Cho Chang        |                                         |
+| Terry Boot       | Advanced Potion-Making                  |
 | Hermione Granger |                                         |
 | Padma Patil      |                                         |
-| Terry Boot       | Advanced Potion-Making                  |
+| Cedric Diggory   | Fantastic Beasts and Where to Find Them |
+| Cho Chang        |                                         |
+| Terry Boot       |                                         |
